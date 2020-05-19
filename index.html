@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title>Homework #3</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+</head>
+<body>
+	<label for="selfID">Your ID</label>
+	<input id="selfID" type="text" placeholder="Set your ID" onchange="setSelf()">
+	<label for="selfID">Partner's ID</label>
+	<input id="peerID" type="text" placeholder="Set partner's ID" onchange="setPeer()">
+	<label for="status">Status:</label>
+	<span id="status" class="disconnected">Disconnected</span>
+
+	<h1>Random Bingo Card</h1>
+	<div class="bingoCard">
+		<table>
+			<tr>
+				<th>B</th><th>I</th><th>N</th><th>G</th><th>O</th>
+			</tr>
+			<tr>
+				<td id="r0c0"></td><td id="r0c1"></td><td id="r0c2"></td><td id="r0c3"></td><td id="r0c4"></td>
+			</tr>
+			<tr>
+				<td id="r1c0"></td><td id="r1c1"></td><td id="r1c2"></td><td id="r1c3"></td><td id="r1c4"></td>
+			</tr>
+			<tr>
+				<td id="r2c0"></td><td id="r2c1"></td><td id="r2c2"></td><td id="r2c3"></td><td id="r2c4"></td>
+			</tr>
+			<tr>
+				<td id="r3c0"></td><td id="r3c1"></td><td id="r3c2"></td><td id="r3c3"></td><td id="r3c4"></td>
+			</tr>
+			<tr>
+				<td id="r4c0"></td><td id="r4c1"></td><td id="r4c2"></td><td id="r4c3"></td><td id="r4c4"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="ballsChosenDiv">
+		<p id="ballsChosen">
+			Balls chosen: 
+		</p>
+	</div>
+	<div>
+		<button onclick="generateGrid()">Populate all</button>
+		<button onclick="pickBall()">Pick a bingo ball</button>
+	</div>
+
+	<div class="ballsChosenDiv">
+		<p>Chat:</p>
+		<div id="messages"></div>
+		<input id="input" type="text" placeholder="Enter a message" onchange="send('message', value)">
+		<input type="submit" value="Send">
+	</div>
+
+	<script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+	<script src="js/connection.js"></script>
+	<script src="js/bingo.js"></script>
+</body>
+</html>
