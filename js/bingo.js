@@ -1,5 +1,6 @@
-const names = ["Bear Dogs","Black and White","Blue Bowtie","Blue Bandana","Bread-Dog","Churro","Crown","Dog and Cat","Flower Crown","Flower Crown","Frisbee","German Shepard","Gold Bandana","Golden Retriever","Green Bandana","Heart Happi","Hibiscus","Husky","Jester and Queen","Lilacs","Minnie Mouse Dog","Misty","Music Note","Pancakes","Pink Bandana","Pink Bow","Purple Bandana","Red Bowtie",	"Red Car","Rose","Sailboat","Side Eye","Stethoscope","Sunglasses","Taco Dog","Toby Badge","Two Doodles","U of M Color","Waffle","White Fluffy"];
-let dogs = names;
+const names = ["Bear Dogs","Black and White","Blue Bowtie","Blue Bandana","Bread Dog","Churro","Crown","Dog and Cat","Flower Crown","Frisbee","German Shepard","Gold Bandana","Golden Retriever","Green Bandana","Heart Happi","Hibiscus","Husky","Jester and Queen","Lilacs","Minnie Mouse Dog","Misty","Music Note","Pancakes","Pink Bandana","Pink Bow","Purple Bandana","Red Bowtie",	"Red Car","Rose","Sailboat","Side Eye","Stethoscope","Sunglasses","Taco Dog","Toby Badge","Two Doodles","U of M Color","Waffle","White Fluffy"];
+let dogs = names.slice(0);
+let deckNo = 0, cardNo = 0;
 
 function setWhoIam(me, other) {
 	document.getElementById(me).disabled = "true";
@@ -9,27 +10,16 @@ function setWhoIam(me, other) {
 }
 
 function reset() {
-	dogs = names;
-	/*for(let col = 0; col < 5; col++) {
-		let values = [];
-		for(let i = 0; i < 15; i++) {
-			values.push((col * 15) + i + 1);
-		}
-
-		let arr = []
-		for(let row = 0; row < 5; row++) {
-			let index = Math.floor(Math.random() * values.length);
-			arr.push(values[index]);
-			values[index] = values[values.length - 1];
-			values.pop();
-		}
-		grid.push(arr);
-	}
-	console.log(grid);
-	populate(grid);
-	send("grid", grid);*/
+	resetDogs();
+	send({"type": "reset"});
 }
-let deckNo = 0, cardNo = 0
+
+function resetDogs() {
+	dogs = names.slice(0);
+	$("#decks").html("<div class='card-deck' id='deck0'></div>");
+	$("#last-called").css("background-image", "");
+	$("#last-called-description").text("");
+}
 
 function processDog(index) {
 	console.log("Processing", index)

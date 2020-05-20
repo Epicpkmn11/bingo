@@ -2,9 +2,10 @@ let selfID, peerID, con, peer;
 
 function connectionCheck() {
 	if(!con._open)  {
-		document.getElementById(peerID.substr(5)).classList.remove("connected");
+		$("#" + peerID.substr(6)).removeClass("connected");
+		connect();
 	} else {
-		document.getElementById(peerID.substr(5)).classList.add("connected");
+		$("#" + peerID.substr(6)).addClass("connected");
 	}
 }
 
@@ -14,7 +15,7 @@ function connect() {
 		con = peer.connect(peerID);
 		con.on("open", function() {
 			console.log("Connected to", peerID);
-			con.send("hi! .o/");
+			$("#" + peerID.substr(6)).addClass("connected");
 		});
 	}
 }
@@ -38,8 +39,13 @@ function setSelf(id) {
 			let parsed = JSON.parse(data);
 			console.log("Received", parsed);
 
-			if(parsed["type"] == "dog") {
-				processDog(parsed["value"]);
+			switch(parsed["type"]) {
+				case "dog":
+					processDog(parsed["value"]);
+					break;
+				case "reset":
+					resetDogs();
+					break;
 			}
 		});
 	});
