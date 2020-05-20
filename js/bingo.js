@@ -2,13 +2,6 @@ const names = ["Bear Dogs","Black and White","Blue Bowtie","Blue Bandana","Bread
 let dogs = names.slice(0);
 let deckNo = 0, cardNo = 0;
 
-function setWhoIam(me, other) {
-	document.getElementById(me).disabled = "true";
-	document.getElementById(other).disabled = "true";
-	setSelf(me);
-	setPeer(other);
-}
-
 function reset() {
 	resetDogs();
 	send({"type": "reset"});
