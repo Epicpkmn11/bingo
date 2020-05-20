@@ -1,6 +1,6 @@
 const names = ["Bear Dogs","Black and White","Blue Bowtie","Blue Bandana","Bread Dog","Churro","Crown","Dog and Cat","Flower Crown","Frisbee","German Shepard","Gold Bandana","Golden Retriever","Green Bandana","Heart Happi","Hibiscus","Husky","Jester and Queen","Lilacs","Minnie Mouse Dog","Misty","Music Note","Pancakes","Pink Bandana","Pink Bow","Purple Bandana","Red Bowtie",	"Red Car","Rose","Sailboat","Side Eye","Stethoscope","Sunglasses","Taco Dog","Toby Badge","Two Doodles","U of M Color","Waffle","White Fluffy"];
 let dogs = names.slice(0);
-let deckNo = 0, cardNo = 0;
+let deckNo = 0;
 
 function reset() {
 	resetDogs();
@@ -12,6 +12,8 @@ function resetDogs() {
 	$("#decks").html("<div class='card-deck' id='deck0'></div>");
 	$("#last-called").css("background-image", "");
 	$("#last-called-description").text("");
+	deckNo = 0;
+	cardNo = 0;
 }
 
 function processDog(index) {
@@ -28,7 +30,7 @@ function processDog(index) {
 		$("#decks").prepend(deck);
 	}
 	let card = document.createElement("div");
-	card.id = "card" + (deckNo * 5 + cardNo++);
+	card.id = "card" + (deckNo * 5 + $("#deck" + deckNo).children().length);
 	card.classList = "called card";
 	console.log(dog);
 	card.style.backgroundImage = "url('images/" + dog + ".png')";
