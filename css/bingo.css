@@ -1,7 +1,7 @@
 html {background-color: #eee;}
 body { background: #eee!important;  width: 100%; padding: 1%; }
 .row { width: 100%; }
-.called { background-image: url("https://epicpkmn11.github.io/bingo/images/bingo.png"); background-size: contain; background-repeat: no-repeat; background-position: center center; border: 1px solid #eee; border-radius: 22px!important; height: calc(8vh); min-height: 110px; text-align: center; background-color: #fff; }
+.called { background-image: url("/images/bingo.png"); background-size: contain; background-repeat: no-repeat; background-position: center center; border: 1px solid #eee; border-radius: 22px!important; height: calc(8vh); min-height: 110px; text-align: center; background-color: #fff; }
 .called#last-called { position: relative;  margin: 3px 0; height: 220px; }
 .card-deck {
 	padding: 3px 0;
