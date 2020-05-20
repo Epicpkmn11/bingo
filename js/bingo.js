@@ -19,7 +19,7 @@ function resetDogs() {
 }
 
 function processDog(index) {
-	console.log("Processing", index)
+	console.log("Processing", index);
 	// Remove the dog from the array
 	let dog = dogs[index];
 	dogs[index] = dogs[dogs.length - 1];

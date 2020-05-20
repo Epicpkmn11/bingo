@@ -10,12 +10,27 @@ peer.on("connection", function(c) {
 	c.on("open", function() {
 		console.log("Connected", c.peer);
 		connections.push(c);
-		c.send({"type": "initial", "value": current});
-	})
+		let users = [];
+		connections.forEach(function(item) { users.push(item.peer); });
+		c.send({"type": "initial", "dogs": current, "users": users});
+		
+		// Tell everyone who connected
+		for(let connection of connections) {
+			if(connection != c) {
+				connection.send({"type": "connect", "user": c.peer});
+			}
+		}
+	});
 	c.on("close", function() {
 		console.log("Disconnected", c.peer);
 		connections = connections.filter(function(item ) { return item != c});
-	})
+		// Tell everyone who disconnected
+		for(let connection of connections) {
+			if(connection != c) {
+				connection.send({"type": "disconnect", "user": c.peer});
+			}
+		}
+	});
 	c.on("data", function(data) {
 		console.log("Received", data);
 
@@ -29,11 +44,6 @@ peer.on("connection", function(c) {
 		switch(data["type"]) {
 			case "dog":
 				processDog(data["value"]);
-				break;
-			case "initial":
-				for(let dog of data["value"]) {
-					processDog(dog);
-				}
 				break;
 			case "thatsAll":
 				$("#last-called").css("background-image", "");

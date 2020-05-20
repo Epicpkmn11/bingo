@@ -11,6 +11,15 @@ function setSelf(id) {
 		console.log("Connected as", id);
 		$("#" + id.substr(6)).addClass("connected");
 		con = peer.connect(hostID);
+
+		con.on("open", function() {
+			$("#host-status").removeClass("d-none");
+		});
+
+		con.on("close", function() {
+			$("#host-status").addClass("d-none");
+		});
+
 		con.on("data", function(data) {
 			console.log("Received", data);
 
@@ -20,8 +29,13 @@ function setSelf(id) {
 					$("#last-person").text(data["sender"] + " picked last");
 					break;
 				case "initial":
-					for(let dog of data["value"]) {
+					for(let dog of data["dogs"]) {
 						processDog(dog);
+					}
+					for(let user of data["users"]) {
+						if(user.includes("bingo-") && user != selfID) {
+							$("#" + user.substr(6)).addClass("connected");
+						}
 					}
 					break;
 				case "thatsAll":
@@ -30,6 +44,12 @@ function setSelf(id) {
 					break;
 				case "reset":
 					resetDogs();
+					break;
+				case "connect":
+					$("#" + data["user"].substr(6)).addClass("connected");
+					break;
+				case "disconnect":
+					$("#" + data["user"].substr(6)).removeClass("connected");
 					break;
 			}
 		});
