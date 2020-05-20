@@ -25,6 +25,8 @@ function setSelf(id) {
 			case "unavailable-id":
 			case "invalid-id":
 				alert(err);
+				$("#" + selfID.substr(6)).prop("disabled", 0);
+				$("#" + peerID.substr(6)).prop("disabled", 0);
 				break;
 			case "network":
 				$("#" + selfID.substr(6)).removeClass("connected");
