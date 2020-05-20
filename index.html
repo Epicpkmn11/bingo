@@ -1,57 +1,37 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>BINGO</title>
-	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+	<meta charset="utf-8">
+	<title>Bingo!</title>
+	<link href="css/bingo.css" rel="stylesheet" type='text/css' media='all' >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel='stylesheet' id='temp-fa-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?ver=1.0.1.8' type='text/css' media='all' />
 </head>
 <body>
-	<label for="selfID">Your ID</label>
-	<input id="selfID" type="text" placeholder="Set your ID" onchange="setSelf()">
-	<label for="selfID">Partner's ID</label>
-	<input id="peerID" type="text" placeholder="Set partner's ID" onchange="setPeer()">
-	<label for="status">Status:</label>
-	<span id="status" class="disconnected">Disconnected</span>
-
-	<h1>Random Bingo Card</h1>
-	<div class="bingoCard">
-		<table>
-			<tr>
-				<th>B</th><th>I</th><th>N</th><th>G</th><th>O</th>
-			</tr>
-			<tr>
-				<td id="r0c0"></td><td id="r0c1"></td><td id="r0c2"></td><td id="r0c3"></td><td id="r0c4"></td>
-			</tr>
-			<tr>
-				<td id="r1c0"></td><td id="r1c1"></td><td id="r1c2"></td><td id="r1c3"></td><td id="r1c4"></td>
-			</tr>
-			<tr>
-				<td id="r2c0"></td><td id="r2c1"></td><td id="r2c2"></td><td id="r2c3"></td><td id="r2c4"></td>
-			</tr>
-			<tr>
-				<td id="r3c0"></td><td id="r3c1"></td><td id="r3c2"></td><td id="r3c3"></td><td id="r3c4"></td>
-			</tr>
-			<tr>
-				<td id="r4c0"></td><td id="r4c1"></td><td id="r4c2"></td><td id="r4c3"></td><td id="r4c4"></td>
-			</tr>
-		</table>
-	</div>
-	<div class="ballsChosenDiv">
-		<p id="ballsChosen">
-			Balls chosen: 
-		</p>
-	</div>
-	<div>
-		<button onclick="generateGrid()">Populate all</button>
-		<button onclick="pickBall()">Pick a bingo ball</button>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row">
+			<div class="called col-sm-6" id="last-called"></div>
+			<div class="col-sm-6" id="last-called-description"></div>
+			</div>
+			<div id="decks">
+				<div class="card-deck" id="deck0"></div>
+			</div>
+		</div>
+		<div class="col-md-4 controls">
+			<h1>Bingo•matic!</h1>
+			<p>
+				<button id="Izzy" class="host Izzy" value="Izzy" onclick="setWhoIam('Izzy','Shannon')">Izzy</button>
+				<button id="Shannon" class="host Shannon" value="Shannon" onclick="setWhoIam('Shannon','Izzy')">Shannon</button>
+			</p>
+			<p><button onclick="pickDog();">Pick a Bingo dog!</button></p>
+			<p id="ballsChosen"></p>
+		</div>
 	</div>
 
-	<div class="ballsChosenDiv">
-		<p>Chat:</p>
-		<div id="messages"></div>
-		<input id="input" type="text" placeholder="Enter a message" onchange="send('message', value)">
-		<input type="submit" value="Send">
-	</div>
-
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
 	<script src="js/connection.js"></script>
 	<script src="js/bingo.js"></script>

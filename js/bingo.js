@@ -1,8 +1,16 @@
-let balls = [];
+const names = ["Bear Dogs","Black and White","Blue Bowtie","Blue Bandana","Bread-Dog","Churro","Crown","Dog and Cat","Flower Crown","Flower Crown","Frisbee","German Shepard","Gold Bandana","Golden Retriever","Green Bandana","Heart Happi","Hibiscus","Husky","Jester and Queen","Lilacs","Minnie Mouse Dog","Misty","Music Note","Pancakes","Pink Bandana","Pink Bow","Purple Bandana","Red Bowtie",	"Red Car","Rose","Sailboat","Side Eye","Stethoscope","Sunglasses","Taco Dog","Toby Badge","Two Doodles","U of M Color","Waffle","White Fluffy"];
+let dogs = names;
 
-function generateGrid() {
-	let grid = [];
-	for(let col = 0; col < 5; col++) {
+function setWhoIam(me, other) {
+	document.getElementById(me).disabled = "true";
+	document.getElementById(other).disabled = "true";
+	setSelf(me);
+	setPeer(other);
+}
+
+function reset() {
+	dogs = names;
+	/*for(let col = 0; col < 5; col++) {
 		let values = [];
 		for(let i = 0; i < 15; i++) {
 			values.push((col * 15) + i + 1);
@@ -19,51 +27,37 @@ function generateGrid() {
 	}
 	console.log(grid);
 	populate(grid);
-	send("grid", grid);
+	send("grid", grid);*/
 }
+let deckNo = 0, cardNo = 0
 
-function populate(grid) {
-	for(let col = 0; col < 5; col++) {
-		for(let row = 0; row < 5; row++) {
-			document.getElementById("r" + row + "c" + col).innerHTML = grid[col][row];
-			document.getElementById("r" + row + "c" + col).style.backgroundColor = "";
-		}
-	}
-
-	// Center is free
-	document.getElementById("r2c2").innerHTML = "FREE";
-	document.getElementById("r2c2").style.backgroundColor = "green";
-
-	// Fill balls array
-	for(let i = 0; i < 75; i++) {
-		balls[i] = i + 1;
-	}
-
-	// Clear balls chosen
-	document.getElementById("ballsChosen").innerHTML = "Balls chosen: ";
-}
-
-function processBall(index) {
+function processDog(index) {
 	console.log("Processing", index)
-	// Remove the ball from the array
-	let ball = balls[index];
-	balls[index] = balls[balls.length - 1];
-	balls.pop();
+	// Remove the dog from the array
+	let dog = dogs[index];
+	dogs[index] = dogs[dogs.length - 1];
+	dogs.pop();
 
-	document.getElementById("ballsChosen").innerHTML += ball + ", ";
-
-	// If that number is on the card, change the background to green
-	for(let cell of document.getElementsByTagName("td")) {
-		if(cell.innerHTML == ball) {
-			cell.style.backgroundColor = "green";
-		}
+	if($("#deck" + deckNo).children().length == 5) {
+		let deck = document.createElement("div");
+		deck.id = "deck" + ++deckNo;
+		deck.classList = "card-deck";
+		$("#decks").prepend(deck);
 	}
+	let card = document.createElement("div");
+	card.id = "card" + (deckNo * 5 + cardNo++);
+	card.classList = "called card";
+	console.log(dog);
+	card.style.backgroundImage = "url('images/" + dog + ".png')";
+	$("#deck" + deckNo).prepend(card);
+	$("#last-called").css("background-image", "url('images/" + dog + ".png')");
+	$("#last-called-description").text(dog);
 }
 
-function pickBall() {
-	if(balls.length > 0) {
-		let index = Math.floor(Math.random() * balls.length);
-		processBall(index);
-		send("ball", index);
+function pickDog() {
+	if(dogs.length > 0) {
+		let index = Math.floor(Math.random() * dogs.length);
+		processDog(index);
+		send({"type": "dog", "value": index});
 	}
 }
