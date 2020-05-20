@@ -3,29 +3,34 @@
 <head>
 	<meta charset="utf-8">
 	<title>Bingo!</title>
-	<link href="css/bingo.css" rel="stylesheet" type='text/css' media='all' >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel='stylesheet' id='temp-fa-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?ver=1.0.1.8' type='text/css' media='all' />
+	<link href="css/bingo.css" rel="stylesheet" type='text/css' media='all' >
 </head>
 <body>
-	<div class="row">
+	<div class="row" id="content">
 		<div class="col-md-8">
-			<div class="row">
-			<div class="called col-sm-6" id="last-called"></div>
-			<div class="col-sm-6" id="last-called-description"></div>
+			<div id="last-container">
+				<div class="called" id="last-called"></div>
+				<div id="last-called-description"></div>
 			</div>
 			<div id="decks">
 				<div class="card-deck" id="deck0"></div>
 			</div>
 		</div>
-		<div class="col-md-4 controls">
-			<h1>Bingo•matic!</h1>
-			<p>
-				<button id="Izzy" class="host Izzy" value="Izzy" onclick="setWhoIam('Izzy','Shannon')">Izzy</button>
-				<button id="Shannon" class="host Shannon" value="Shannon" onclick="setWhoIam('Shannon','Izzy')">Shannon</button>
-			</p>
-			<p><button onclick="pickDog();">Pick a Bingo dog!</button></p>
-			<p id="ballsChosen"></p>
+		<div class="col-md-4">
+		<div class="card controls">
+			<div class="card-header">
+				<h1 class="card-title">Bingo•matic!</h1>
+			</div>
+			<div class="card-body">
+				<p>
+					<button id="Izzy" class="host Izzy" value="Izzy" onclick="setWhoIam('Izzy','Shannon')">Izzy</button>
+					<button id="Shannon" class="host Shannon" value="Shannon" onclick="setWhoIam('Shannon','Izzy')">Shannon</button>
+				</p>
+				<p><button onclick="pickDog();">Pick a Bingo dog!</button></p>
+			</div>
+			<div class="card-footer"><button id="reset" onclick="reset()">New Game</button></div></div>
 		</div>
 	</div>
 

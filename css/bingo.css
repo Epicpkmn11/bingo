@@ -2,11 +2,15 @@ html {background-color: #eee;}
 body { background: #eee!important;  width: 100%; padding: 1%; }
 .row { width: 100%; }
 .called { background-image: url("/images/bingo.png"); background-size: contain; background-repeat: no-repeat; background-position: center center; border: 1px solid #eee; border-radius: 22px!important; height: calc(8vh); min-height: 110px; text-align: center; background-color: #fff; }
-.called#last-called { position: relative; width: 50%; margin: 3px 0; min-height: 220px; height: calc(15vh); }
+.called#last-called { position: relative;  margin: 3px 0; height: 220px; }
 .card-deck {
 	padding: 3px 0;
 }
-.controls { color: #a6a6ed; }
+/*#content { min-height:100vh;}*/
+.controls { color: #a6a6ed; height:95vh; }
 .controls button { position: relative; margin: 0 22px 0 0; font-size: 30px; padding: 1px 11px; color: #a6a6ed; border: 1px solid #a6a6ed; text-transform: uppercase; border-radius: 7px; background-color: #e6e6fa;}
 .host.connected:before { font-family:FontAwesome; content: '\f058'; display:block; font-size: 33px; width: 27px; height: 27px; line-height: 33px; padding: 0; position: absolute; left: -13px; top: -13px; color: #a6a6ed; background-color: #fff; border-radius: 50%; }
 .card-deck .card { max-width: 15%; }
+#last-container { display:table; width:100%; }
+#last-called { display: table-cell; width:50%; }
+#last-called-description { color:#3636ad; font-size: 30px; display:table-cell; vertical-align: middle; text-align:center; width:50%; }
