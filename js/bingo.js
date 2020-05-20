@@ -49,5 +49,8 @@ function pickDog() {
 		let index = Math.floor(Math.random() * dogs.length);
 		processDog(index);
 		send({"type": "dog", "value": index});
+	} else {
+		$("#last-called").css("background-image", "");
+		$("#last-called-description").text("That's all");
 	}
 }
