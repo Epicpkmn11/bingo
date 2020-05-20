@@ -1,5 +1,6 @@
 const names = ["Bear Dogs","Black and White","Blue Bowtie","Blue Bandana","Bread Dog","Churro","Crown","Dog and Cat","Flower Crown","Frisbee","German Shepard","Gold Bandana","Golden Retriever","Green Bandana","Heart Happi","Hibiscus","Husky","Jester and Queen","Lilacs","Minnie Mouse Dog","Misty","Music Note","Pancakes","Pink Bandana","Pink Bow","Purple Bandana","Red Bowtie",	"Red Car","Rose","Sailboat","Side Eye","Stethoscope","Sunglasses","Taco Dog","Toby Badge","Two Doodles","U of M Color","Waffle","White Fluffy"];
 let dogs = names.slice(0);
+let current = [];
 let deckNo = 0;
 
 function reset() {
@@ -9,6 +10,7 @@ function reset() {
 
 function resetDogs() {
 	dogs = names.slice(0);
+	current = [];
 	$("#decks").html("<div class='card-deck' id='deck0'></div>");
 	$("#last-called").css("background-image", "");
 	$("#last-called-description").text("");
@@ -22,6 +24,8 @@ function processDog(index) {
 	let dog = dogs[index];
 	dogs[index] = dogs[dogs.length - 1];
 	dogs.pop();
+
+	current.push(index);
 
 	if($("#deck" + deckNo).children().length == 5) {
 		let deck = document.createElement("div");
@@ -42,7 +46,7 @@ function pickDog() {
 	if(dogs.length > 0) {
 		let index = Math.floor(Math.random() * dogs.length);
 		processDog(index);
-		send({"type": "dog", "value": index});
+		send({"type": "dog", "value": index, "sender": selfID.substr(6)});
 	} else {
 		$("#last-called").css("background-image", "");
 		$("#last-called-description").text("That's all");

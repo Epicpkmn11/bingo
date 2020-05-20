@@ -7,7 +7,16 @@
 	<link rel='stylesheet' id='temp-fa-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?ver=1.0.1.8' type='text/css' media='all' />
 	<link href="css/bingo.css" rel="stylesheet" type='text/css' media='all' >
 </head>
-<body onload="setSelf('Host')">
+<body>
+	<noscript>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="p-2 col-sm-12 bg-danger rounded text-center">
+					<h3>This site requires JavaScript!</h3>
+				</div>
+			</div>
+		</div>
+	</noscript>
 	<div class="row" id="content">
 		<div class="col-md-12">
 			<div id="last-container">
@@ -24,7 +33,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="//unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
-	<script src="js/connection.js"></script>
+	<script src="js/host-connection.js"></script>
 	<script src="js/bingo.js"></script>
 </body>
 </html>
