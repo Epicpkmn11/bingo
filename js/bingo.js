@@ -32,7 +32,6 @@ function processDog(index) {
 	let card = document.createElement("div");
 	card.id = "card" + (deckNo * 5 + $("#deck" + deckNo).children().length);
 	card.classList = "called card";
-	console.log(dog);
 	card.style.backgroundImage = "url('images/" + dog + ".png')";
 	$("#deck" + deckNo).prepend(card);
 	$("#last-called").css("background-image", "url('images/" + dog + ".png')");
@@ -49,4 +48,10 @@ function pickDog() {
 		$("#last-called-description").text("That's all");
 		send({"type": "thatsAll"});
 	}
+	if(selfID)
+		$("#last-person").text(selfID.substr(6) + " last picked");
+	$("#pick-dog").prop("disabled", 1);
+	setTimeout(function() {
+		$("#pick-dog").prop("disabled", 0);
+	}, 3000);
 }

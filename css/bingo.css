@@ -14,3 +14,4 @@ body { background: #eee!important;  width: 100%; padding: 1%; }
 #last-container { display:table; width:100%; }
 #last-called { display: table-cell; width:50%; }
 #last-called-description { color:#3636ad; font-size: 30px; display:table-cell; vertical-align: middle; text-align:center; width:50%; }
+#pick-dog:disabled { opacity: 0.5; }
