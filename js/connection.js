@@ -50,6 +50,10 @@ function setSelf(id) {
 				case "dog":
 					processDog(parsed["value"]);
 					break;
+				case "thatsAll":
+					$("#last-called").css("background-image", "");
+					$("#last-called-description").text("That's all");
+					break;
 				case "reset":
 					resetDogs();
 					break;

@@ -45,5 +45,6 @@ function pickDog() {
 	} else {
 		$("#last-called").css("background-image", "");
 		$("#last-called-description").text("That's all");
+		send({"type": "thatsAll"});
 	}
 }
