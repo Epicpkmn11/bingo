@@ -2,10 +2,15 @@ const hostID = "bingo-Host";
 let selfID, peer, con;
 
 function setSelf(id) {
+	if(peer) {
+		peer.destroy();
+		resetDogs();
+	}
 	selfID = id ? "bingo-" + id : id;
 	peer = new Peer(selfID);
 
-	$(".host").prop("disabled", 1);
+	if(id)
+		$(".host").prop("disabled", 1);
 
 	peer.on("open", function(id) {
 		console.log("Connected as", id);
@@ -59,7 +64,7 @@ function setSelf(id) {
 		console.warn("Error! Type", err.type);
 		alert(err);
 		$("#" + selfID.substr(6)).removeClass("connected me");
-		$(".host").prop("disabled", 1)
+		$(".host").prop("disabled", 0)
 	});
 }
 
