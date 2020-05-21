@@ -46,7 +46,9 @@ function pickDog() {
 	if(dogs.length > 0) {
 		let index = Math.floor(Math.random() * dogs.length);
 		processDog(index);
-		send({"type": "dog", "value": index, "sender": selfID.substr(6)});
+		if(selfID) {
+			send({"type": "dog", "value": index, "sender": selfID.substr(6)});
+		}
 	} else {
 		$("#last-called").css("background-image", "");
 		$("#last-called-description").text("That's all");

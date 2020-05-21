@@ -58,5 +58,11 @@ peer.on("connection", function(c) {
 
 peer.on("error", function(err) {
 	console.warn("Error! Type", err.type);
-	alert(err);
+	switch(err.type) {
+		case "peer-unavailable":
+			break;
+		default:
+			alert(err);
+			break;
+	}
 });
