@@ -10,10 +10,9 @@ function genID(id) {
 }
 
 function setSelf(id) {
-	if(peer) {
+	if(peer)
 		peer.destroy();
-		resetDogs();
-	}
+	resetDogs();
 	selfID = genID(id);
 	peer = new Peer(selfID);
 
