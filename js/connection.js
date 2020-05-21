@@ -1,20 +1,28 @@
 const hostID = "bingo-Host";
 let selfID, peer, con;
 
+function genID(id) {
+	let rand = "";
+	for(let i = 0; i < 9; i++) {
+		rand += String.fromCharCode(Math.random() * 26 + 0x41);
+	}
+	return rand + "-" + id;
+}
+
 function setSelf(id) {
 	if(peer) {
 		peer.destroy();
 		resetDogs();
 	}
-	selfID = id ? "bingo-" + id : id;
+	selfID = genID(id);
 	peer = new Peer(selfID);
 
-	if(id)
+	if(id != "Guest")
 		$(".host").prop("disabled", 1);
 
 	peer.on("open", function(id) {
 		console.log("Connected as", id);
-		$("#" + id.substr(6)).addClass("connected me");
+		$("#" + id.substr(10)).addClass("connected me");
 		con = peer.connect(hostID);
 
 		con.on("open", function() {
@@ -38,9 +46,7 @@ function setSelf(id) {
 						processDog(dog);
 					}
 					for(let user of data["users"]) {
-						if(user.includes("bingo-") && user != selfID) {
-							$("#" + user.substr(6)).addClass("connected");
-						}
+						$("#" + user.substr(10)).addClass("connected");
 					}
 					break;
 				case "thatsAll":
@@ -51,10 +57,10 @@ function setSelf(id) {
 					resetDogs();
 					break;
 				case "connect":
-					$("#" + data["user"].substr(6)).addClass("connected");
+					$("#" + data["user"].substr(10)).addClass("connected");
 					break;
 				case "disconnect":
-					$("#" + data["user"].substr(6)).removeClass("connected");
+					$("#" + data["user"].substr(10)).removeClass("connected");
 					break;
 			}
 		});
@@ -63,7 +69,7 @@ function setSelf(id) {
 	peer.on("error", function(err) {
 		console.warn("Error! Type", err.type);
 		alert(err);
-		$("#" + selfID.substr(6)).removeClass("connected me");
+		$("#" + selfID.substr(10)).removeClass("connected me");
 		$(".host").prop("disabled", 0)
 	});
 }

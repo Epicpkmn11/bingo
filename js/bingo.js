@@ -47,7 +47,7 @@ function pickDog() {
 		let index = Math.floor(Math.random() * dogs.length);
 		processDog(index);
 		if(selfID) {
-			send({"type": "dog", "value": index, "sender": selfID.substr(6)});
+			send({"type": "dog", "value": index, "sender": selfID.substr(10)});
 		}
 	} else {
 		$("#last-called").css("background-image", "");
@@ -55,7 +55,7 @@ function pickDog() {
 		send({"type": "thatsAll"});
 	}
 	if(selfID)
-		$("#last-person").text(selfID.substr(6) + " last picked");
+		$("#last-person").text(selfID.substr(10) + " picked last");
 	$("#pick-dog").prop("disabled", 1);
 	setTimeout(function() {
 		$("#pick-dog").prop("disabled", 0);
