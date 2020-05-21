@@ -9,7 +9,7 @@ function setSelf(id) {
 
 	peer.on("open", function(id) {
 		console.log("Connected as", id);
-		$("#" + id.substr(6)).addClass("connected");
+		$("#" + id.substr(6)).addClass("connected me");
 		con = peer.connect(hostID);
 
 		con.on("open", function() {
@@ -58,7 +58,7 @@ function setSelf(id) {
 	peer.on("error", function(err) {
 		console.warn("Error! Type", err.type);
 		alert(err);
-		$("#" + selfID.substr(6)).removeClass("connected");
+		$("#" + selfID.substr(6)).removeClass("connected me");
 		$(".host").prop("disabled", 1)
 	});
 }
