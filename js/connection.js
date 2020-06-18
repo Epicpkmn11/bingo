@@ -1,5 +1,5 @@
 const hostID = "bingo-Host";
-let selfID, peer, con;
+let selfID, peer, con, error;
 
 function genID(id) {
 	let rand = "";
@@ -23,6 +23,11 @@ function setSelf(id) {
 		console.log("Connected as", id);
 		$("#" + id.substr(10)).addClass("connected me");
 		con = peer.connect(hostID);
+
+		con.on("error", function(err) {
+			console.log("Con Error!", err);
+			error = err;
+		});
 
 		con.on("open", function() {
 			$("#host-status").removeClass("d-none");
