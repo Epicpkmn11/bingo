@@ -11,7 +11,7 @@ function reset() {
 function resetDogs() {
 	dogs = names.slice(0);
 	current = [];
-	$("#decks").html("<div class='card-deck' id='deck0'></div>");
+	$("#decks").html("<div class='row' id='deck0'></div>");
 	$("#last-called").css("background-image", "");
 	$("#last-called-description").text("");
 	deckNo = 0;
@@ -27,17 +27,20 @@ function processDog(index) {
 
 	current.push(index);
 
-	if($("#deck" + deckNo).children().length == 5) {
+	if($("#deck" + deckNo).children().length == 6) {
 		let deck = document.createElement("div");
 		deck.id = "deck" + ++deckNo;
-		deck.classList = "card-deck";
+		deck.classList = "row";
 		$("#decks").prepend(deck);
 	}
+	let col = document.createElement("div");
+	col.classList = "col-sm-2";
 	let card = document.createElement("div");
-	card.id = "card" + (deckNo * 5 + $("#deck" + deckNo).children().length);
-	card.classList = "called card";
+	card.id = "card" + (deckNo * 6 + $("#deck" + deckNo).children().length);
+	card.classList = "called card mx-auto d-block";
 	card.style.backgroundImage = "url('images/" + dog + ".png')";
-	$("#deck" + deckNo).prepend(card);
+	$(col).append(card);
+	$("#deck" + deckNo).prepend(col);
 	$("#last-called").css("background-image", "url('images/" + dog + ".png')");
 	$("#last-called-description").text(dog);
 }
