@@ -14,7 +14,7 @@ function setSelf(id) {
 		peer.destroy();
 	resetDogs();
 	selfID = genID(id);
-	peer = new Peer(selfID, {"host": "octopi.local", "key": "happi", "port": 9000});
+	peer = new Peer(selfID, {"host": "home.pk11.us", "key": "happi", "port": 9000});
 
 	if(id != "Guest")
 		$(".host").prop("disabled", 1);
