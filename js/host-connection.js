@@ -1,6 +1,8 @@
 let connections = [];
 
-peer = new Peer("bingo-Host")
+let peer = new Peer("bingo-Host", {"host": "octopi.local", "key": "happi", "port": 9000});
+
+console.log(peer);
 
 peer.on("open", function(id) {
 	console.log("Connected as", id);
