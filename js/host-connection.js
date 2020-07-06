@@ -1,6 +1,6 @@
 let connections = [];
 
-let peer = new Peer("bingo-Host", {"host": "home.pk11.us", "key": "happi", "port": 9000});
+let peer = new Peer("bingo-Host");
 
 peer.on("open", function(id) {
 	console.log("Connected as", id);
